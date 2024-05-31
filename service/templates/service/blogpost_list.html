@@ -1,0 +1,45 @@
+{% extends 'service/base.html' %}
+{% block content %}
+{% load image_output %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Skystore</h1>
+    <p class="lead">Skystore - рассылки для людей</p>
+    {% if user.is_authenticated %}
+    <a class="p-2 btn btn-outline-primary" href="/blog/create/">Создать пост</a>
+    {% endif %}
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-3">
+
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object }}</h4>
+                </div>
+                <img class="card-img-top" src="{% mymedia object.image %}">
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>{{ object.body|slice:100 }}</li>
+                        <li>Опубликовано: {{ object.published_at }}</li>
+                        <li>Автор: {{ object.creator }}</li>
+                    </ul>
+                    <div class="btn-group">
+                        <a class="p-2 btn btn-outline-primary" href="/blog/{{ object.pk }}/">Подробнее</a>
+                        {% if user.is_superuser or user == object.creator or perm.service.can_change_BlogPost %}
+                        <a class="p-2 btn btn-outline-primary" href="/blog/update/{{ object.pk }}/">Изменить</a>
+                        {% endif %}
+                        {% if user.is_superuser or user == object.creator or perm.service.can_delete_BlogPost %}
+                        <a class="p-2 btn btn-outline-primary" href="/blog/delete/{{ object.pk }}/">Удалить</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
