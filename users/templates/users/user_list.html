@@ -1,0 +1,42 @@
+{% extends 'service/base.html' %}
+{% block content %}
+{% load image_output %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Skystore</h1>
+    <p class="lead">Skystore - рассылки для людей</p>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        {% for object in object_list %}
+        {% if user.is_superuser or perms.users.can_view_all_users %}
+        <div class="col-3">
+
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>Фамилия: {{ object.last_name }}</li>
+                        <li>Имя: {{ object.first_name }}</li>
+                        <li>Почта: {{ object.email }}</li>
+                        <li>Телефон: {{ object.phone }}</li>
+                        <li>Страна: {{ object.country }}</li>
+                        <li>Статус блокировки: {{ object.is_banned }}</li>
+                    </ul>
+                    {% if perms.users.can_edit_is_banned %}
+                    <div class="btn-group">
+                        <a class="p-2 btn btn-outline-primary" href="/users/update/{{ object.pk }}/">Изменить</a>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

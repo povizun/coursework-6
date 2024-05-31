@@ -1,0 +1,38 @@
+<div class="container">
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+                SkyStore
+                <small class="d-block mb-3 text-muted">&copy; 2023 - {% now 'Y' %}</small>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Аккаунт</h5>
+                <ul class="list-unstyled text-small">
+                    {% if user.is_authenticated %}
+                        <li><a class="text-muted" href="{% url 'users:profile' %}">Профиль</a></li>
+                        <li><a class="text-muted" href="{% url 'users:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a class="text-muted" href="{% url 'users:login' %}">Войти</a></li>
+                        <li><a class="text-muted" href="{% url 'users:register' %}">Зарегистрироваться</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Сервис</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/">Главная</a></li>
+                    <li><a class="text-muted" href="/attempts/">Попытки</a></li>
+                    <li><a class="text-muted" href="/messages/">Сообщения</a></li>
+                    <li><a class="text-muted" href="/clients/">Клиенты</a></li>
+                    <li><a class="text-muted" href="/mailings/">Рассылки</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+                <h5>Блог</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/blog/">Статьи</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</div>
