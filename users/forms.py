@@ -28,6 +28,7 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ('is_banned',)
 
+
 class RecoveryForm(PasswordResetForm):
     pass
 
