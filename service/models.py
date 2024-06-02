@@ -82,7 +82,7 @@ class MailingAttempt(models.Model):
     mailing = models.ForeignKey('Mailing', verbose_name='рассылка', on_delete=models.RESTRICT)
 
     def __str__(self):
-        return f"{self.last_attempt} {self.status}"
+        return f"{self.last_attempt} {self.is_success}"
 
     class Meta:
         verbose_name = 'Попытка рассылки'

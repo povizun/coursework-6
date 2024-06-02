@@ -1,7 +1,5 @@
 import logging
 import smtplib
-from datetime import datetime
-import pytz
 
 from django.utils import timezone
 from django.core.mail import send_mail
