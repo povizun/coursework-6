@@ -10,7 +10,6 @@
                 <ul class="list-unstyled text-small">
                     {% if user.is_authenticated %}
                         <li><a class="text-muted" href="{% url 'users:profile' %}">Профиль</a></li>
-                        <li><a class="text-muted" href="{% url 'users:logout' %}">Выйти</a></li>
                     {% else %}
                         <li><a class="text-muted" href="{% url 'users:login' %}">Войти</a></li>
                         <li><a class="text-muted" href="{% url 'users:register' %}">Зарегистрироваться</a></li>
