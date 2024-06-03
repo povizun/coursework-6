@@ -12,7 +12,10 @@
         {% endif %}
         {% if user.is_authenticated %}
             <a href="{% url 'users:profile' %}" class="p-2 btn btn-outline-primary">Профиль</a>
-            <a href="{% url 'users:logout' %}" class="p-2 btn btn-outline-primary">Выйти</a>
+            <form method="post" action="{% url 'users:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="p-2 btn btn-outline-danger">Выйти</button>
+            </form>
         {% else %}
             <a href="{% url 'users:login' %}" class="p-2 btn btn-outline-primary">Войти</a>
             <a href="{% url 'users:register' %}" class="p-2 btn btn-outline-primary">Зарегистрироваться</a>
